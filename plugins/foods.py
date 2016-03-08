@@ -220,3 +220,18 @@ def rootbeer(text, action):
 
     # act out the message
     action(generator.generate_string())
+    
+@asyncio.coroutine
+@hook.command
+def weed(text, action):
+    """<user> - give a weed to <user>"""
+    user = text.strip()
+
+    if not is_valid(user):
+        return "I can't give a weed to that user."
+
+    selection = weed_data[random.randint(0,26)]
+    weed_name = selection['Name']
+    
+    # act out the message
+    action("hands {} a small baggie of {}.".format(user, weed_name))
